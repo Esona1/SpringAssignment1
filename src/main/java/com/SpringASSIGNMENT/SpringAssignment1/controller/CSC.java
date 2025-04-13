@@ -58,3 +58,12 @@ return "Course has been updated successfully.";
     }
     
 }
+@PAostMapping
+    public String createCourse(@Valid @RequestBody CscCourses new Courses , BindingResult)
+    if (result.hasErrors()){
+    return result.getAllErrors().get(0).getDefauktMaddage();
+}  
+courses.add(newCourse);
+return "Course information created successfully.";
+    }
+
