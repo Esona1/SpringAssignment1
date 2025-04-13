@@ -33,6 +33,19 @@ public class CSC {
     public List<CSCCourses> getCourses(){
         return courses;
     }
+    @PutMapping("{courseLevel}")
+    public String updateCourse(@PathVariable String courseLevel, @Valid @RequestBody CscCourses updateedCourses,BindingResult result){
+        if(result.hasErrors()){
+            return result.getAllErrors().get(0).getDefaultMessage();
+        }
+        for (int i = 0; i ‹ courses.size(); i++) {
+if (courses.get(i).getCourseType().equalsIgnorecase(courseType)) {
+courses. set (1, updatedCourse);
+return "Course has been updated successfully.";
+}
+        }
+        throw new IllegalArguementException("Course Level was not found:" + courseLevel);
+    }
 @DeleteMapping("{courseLevel}")
     public String deleteCourse(@PathVariable String courseType) {
         for (int i = 0; i< courses.size(); i++) {
