@@ -33,5 +33,15 @@ public class CSC {
     public List<CSCCourses> getCourses(){
         return courses;
     }
-
+@DeleteMapping("{courseLevel}")
+    public String deleteCourse(@PathVariable String courseType) {
+        for (int i = 0; i< courses.size(); i++) {
+            if (courses.get(i).getCourseType().equalsIgnoreCase(courseType)) {
+                courses.remove(i);
+                return "Course deleted successfully.";
+            }
+        }
+        throw new IllegalArgumentException("Course type not found: " + courseType);
+    }
+    
 }
