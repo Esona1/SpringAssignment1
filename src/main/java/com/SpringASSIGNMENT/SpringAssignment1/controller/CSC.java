@@ -34,12 +34,12 @@ public class CSC {
         return courses;
     }
     @PutMapping("{courseLevel}")
-    public String updateCourse(@PathVariable String courseLevel, @Valid @RequestBody CscCourses updateedCourses,BindingResult result){
+    public String updateCourse(@PathVariable String courseLevel, @Valid @RequestBody CscCourses updatedCourses,BindingResult result){
         if(result.hasErrors()){
             return result.getAllErrors().get(0).getDefaultMessage();
         }
         for (int i = 0; i ‹ courses.size(); i++) {
-if (courses.get(i).getCourseType().equalsIgnorecase(courseType)) {
+if (courses.get(i).getCourseLevel().equalsIgnorecase(courseLevel)) {
 courses. set (1, updatedCourse);
 return "Course has been updated successfully.";
 }
@@ -47,23 +47,23 @@ return "Course has been updated successfully.";
         throw new IllegalArguementException("Course Level was not found:" + courseLevel);
     }
 @DeleteMapping("{courseLevel}")
-    public String deleteCourse(@PathVariable String courseType) {
+    public String deleteCourse(@PathVariable String courseLevel) {
         for (int i = 0; i< courses.size(); i++) {
-            if (courses.get(i).getCourseType().equalsIgnoreCase(courseType)) {
+            if (courses.get(i).getCourseLevel().equalsIgnoreCase(courseLevel)) {
                 courses.remove(i);
                 return "Course deleted successfully.";
             }
         }
-        throw new IllegalArgumentException("Course type not found: " + courseType);
+        throw new IllegalArgumentException("Course type not found: " + courseLevel);
     }
     
 }
-@PAostMapping
+@PostMapping
     public String createCourse(@Valid @RequestBody CscCourses new Courses , BindingResult)
     if (result.hasErrors()){
     return result.getAllErrors().get(0).getDefauktMaddage();
 }  
 courses.add(newCourse);
-return "Course information created successfully.";
+return "Course created successfully";
     }
 
