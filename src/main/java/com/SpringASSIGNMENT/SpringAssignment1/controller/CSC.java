@@ -33,6 +33,14 @@ public class CSC {
     public List<CSCCourses> getCourses(){
         return courses;
     }
+    @GetMapping("{courseLevel}")
+    public CSCCourses getCourseByLevel(@PathVariable String courseLevel){
+        for (CSCCourses course : courses){
+            if (course.getCourseLevel().equalsIgnoreCase(courseLevel)){
+                return course;
+            }
+        } throw new IllegalArgumentException("Invalid course lel=vel: "+ courseLevel);
+    }
     @PutMapping("{courseLevel}")
     public String updateCourse(@PathVariable String courseLevel, @Valid @RequestBody CscCourses updatedCourses,BindingResult result){
         if(result.hasErrors()){
